@@ -1,5 +1,12 @@
 from flask import Flask, request, render_template, jsonify
+from flask_sqlalchemy import SQLAlchemy
+from test_model import Person
+
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test_db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
 @app.route('/')
 def index():
     return 'Response Data'
@@ -47,3 +54,14 @@ def try_rest():
     print(name)
     response_json = {"response_json": request_json}
     return jsonify(response_json)
+
+@app.route('/person_search')
+def person_search():
+    return render_template('person_search.html')
+
+@app.route('/person_result')
+def person_result():
+    search_size = request.args.get("search_size")
+    persons = db.session.query(Person).filter(Person.size > search_size)
+    return render_template('person_result.html', persons=persons, search_size=search_size)
+
