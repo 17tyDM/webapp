@@ -65,3 +65,10 @@ def person_result():
     persons = db.session.query(Person).filter(Person.size > search_size)
     return render_template('person_result.html', persons=persons, search_size=search_size)
 
+@app.route('/try_html')
+def try_html():
+    return render_template('try_html.html')
+
+@app.route('/show_data', methods=['GET', 'POST'])
+def show_data():
+     return request.form

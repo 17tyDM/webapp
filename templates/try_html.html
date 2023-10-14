@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='try_css.css')}}">
+    <title>Document</title>
+</head>
+<body>
+<form method="POST" action="http://127.0.0.1:5000/show_data">
+    <table border="1">
+        <tr>
+            <th>inputタグです</th>
+            <th>決定ボタンです</th>
+        </tr>
+        <tr>
+            <td>入力：<input type="text" name="value"></td>
+            <td><input type="submit"></td>
+        </tr>
+    </table>
+</form>
+    
+</body>
+</html>
