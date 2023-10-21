@@ -39,7 +39,7 @@ NAMES付与  ...  --name [名前]
 
 [ コンテナの確認 ]
 docker ps
-備考：[-a]・・・詳細表示
+詳細表示  ...  -a
 
 [ dockerの停止 ]
 docker stop [コンテナ名]
