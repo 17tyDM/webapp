@@ -1,0 +1,48 @@
+[ Dockerfileの作成 ]
+ファイル名：Dockerfile
+==========以下中身==========
+# syntax=docker/dockerfile:1
+FROM python:3.10-slim-buster
+WORKDIR /app
+COPY requirements.txt requirements.txt
+RUN pip3 install -r requirements.txt
+COPY static static
+COPY templates templates
+COPY app.py app.py
+COPY test_db test_db
+COPY test_model.py test_model.py
+CMD [ "python3", "-m", "flask", "run", "--host=0.0.0.0"]
+============================
+
+[ バージョン確認 ]
+docker -v
+
+[ イメージのビルド ]
+docker build --tag [イメージ名] .
+
+[ イメージの確認 ]
+docker images
+
+[ イメージのタグ付与 ]
+docker tag [イメージ名] [付与するタグ]
+
+[ イメージ削除 ]
+docker rmi [イメージ名]
+
+[ コンテナの起動 ]
+docker run [コンテナ名]
+----------以下 docker run のオプション----------
+ポート公開  ...  --publish [ホストポート]：[コンテナポート]
+バックグラウンド起動  ...  -d
+NAMES付与  ...  --name [名前]
+-----------------------------------------------
+
+[ コンテナの確認 ]
+docker ps
+備考：[-a]・・・詳細表示
+
+[ dockerの停止 ]
+docker stop [コンテナ名]
+
+[ dockerの再起動 ]
+docker restart [コンテナ名]
